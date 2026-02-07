@@ -1,0 +1,9 @@
+spring:
+  kafka:
+    bootstrap-servers:
+      localhost: 9091
+    consumer:
+      group-id: kafka-test-batch-group-id
+
+application:
+  kafka-topics: kafka-test-batch-topic
