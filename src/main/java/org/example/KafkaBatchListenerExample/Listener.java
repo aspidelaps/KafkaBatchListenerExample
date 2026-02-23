@@ -1,8 +1,12 @@
+package org.example.KafkaBatchListenerExample;
+
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.common.protocol.Message;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
 
+@Service
 public class Listener {
 
     @KafkaListener(
