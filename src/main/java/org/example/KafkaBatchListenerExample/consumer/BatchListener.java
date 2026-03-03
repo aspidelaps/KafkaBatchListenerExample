@@ -2,7 +2,6 @@ package org.example.KafkaBatchListenerExample.consumer;
 
 import lombok.val;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.common.protocol.Message;
 import org.example.KafkaBatchListenerExample.service.NotificationsHistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -21,7 +20,7 @@ public class BatchListener {
             groupId = "${spring.kafka.consumer.group-id}",
             batch = "true"
     )
-    public void consume(ConsumerRecords<String, String> notifications) {
+    public void consume(ConsumerRecords<UUID, String> notifications) {
         for (val n: notifications) {
             notificationsHistory.save(n.key(), n.value());
         }

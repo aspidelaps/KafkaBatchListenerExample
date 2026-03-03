@@ -10,13 +10,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Data
 public class NotificationsHistory {
 
-    private Map<String, String> notifications = new HashMap<>();
+    private Map<UUID, String> notifications = new HashMap<>();
+    private AtomicBoolean isEmpty = new AtomicBoolean(true);
 
     public AtomicBoolean isEmpty() {
-        return new AtomicBoolean(notifications.isEmpty());
+        return isEmpty;
     }
 
-    public void save(String id, String message) {
+    public void save(UUID id, String message) {
         notifications.put(id, message);
+        if (isEmpty.get()) {
+            isEmpty.set(false);
+        }
     }
 }

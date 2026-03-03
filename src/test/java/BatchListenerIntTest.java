@@ -21,7 +21,7 @@ import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 public class BatchListenerIntTest extends KafkaTestContainer {
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<UUID, String> kafkaTemplate;
     @Autowired
     public NotificationsHistory notificationsHistory;
     @Value("${application.kafka-topics}")
@@ -30,7 +30,7 @@ public class BatchListenerIntTest extends KafkaTestContainer {
     @Test
     public void simpleTest() {
         Assertions.assertTrue(kafkaContainer.isRunning());
-        kafkaTemplate.send(topic, UUID.randomUUID().toString(), "Simple test message");
+        kafkaTemplate.send(topic, UUID.randomUUID(), "Simple test message");
         await().pollInterval(Duration.ofSeconds(3))
                 .atMost(10, SECONDS)
                 .untilFalse(notificationsHistory.isEmpty());
