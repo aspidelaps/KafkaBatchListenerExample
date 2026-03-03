@@ -12,6 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.Duration;
 import java.util.UUID;
+import java.util.stream.IntStream;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
@@ -30,9 +31,14 @@ public class BatchListenerIntTest extends KafkaTestContainer {
     @Test
     public void simpleTest() {
         Assertions.assertTrue(kafkaContainer.isRunning());
-        kafkaTemplate.send(topic, UUID.randomUUID(), "Simple test message");
+        kafkaSendMessages();
         await().pollInterval(Duration.ofSeconds(3))
                 .atMost(10, SECONDS)
-                .untilFalse(notificationsHistory.isEmpty());
+                .until(() -> notificationsHistory.getSize().equals(10));
+    }
+
+    private void kafkaSendMessages() {
+        IntStream.range(0, 10)
+                .forEach(i -> kafkaTemplate.send(topic, UUID.randomUUID(), "Simple test message"));
     }
 }

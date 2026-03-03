@@ -1,0 +1,4 @@
+spring:
+  kafka:
+    producer:
+      batch-size: 10
