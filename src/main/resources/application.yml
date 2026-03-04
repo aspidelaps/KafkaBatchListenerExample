@@ -1,6 +1,6 @@
 spring:
   kafka:
-    bootstrap-servers: localhost:9091
+    bootstrap-servers: localhost:9092
     consumer:
       group-id: kafka-test-batch-group-id
       key-deserializer: org.apache.kafka.common.serialization.UUIDDeserializer
@@ -11,3 +11,7 @@ spring:
 
 application:
   kafka-topics: kafka-test-batch-topic
+
+management:
+  endpoints.web.exposure.include: "*"
+  server.port: 8081
