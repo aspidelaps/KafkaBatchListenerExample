@@ -1,6 +1,10 @@
 spring:
   kafka:
     bootstrap-servers: localhost:9092
+    listener:
+      observation-enabled: true
+    template:
+      observation-enabled: true
     consumer:
       group-id: kafka-test-batch-group-id
       key-deserializer: org.apache.kafka.common.serialization.UUIDDeserializer
@@ -15,3 +19,7 @@ application:
 management:
   endpoints.web.exposure.include: "*"
   server.port: 8081
+  observations:
+    enable:
+      all: true
+#  kafka-console-producer --broker-list localhost:9092 --topic test-topic --property parse.key=true --property key.separator=:

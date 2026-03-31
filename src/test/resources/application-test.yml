@@ -2,3 +2,10 @@ spring:
   kafka:
     producer:
       batch-size: 10
+    template:
+      observation-enabled: true
+    listener:
+      observation-enabled: true
+  test:
+    observability:
+      auto-configure: true
