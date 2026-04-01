@@ -38,6 +38,7 @@ public class BatchListenerIntTest extends KafkaTestContainer {
     }
 
     private void kafkaSendMessages() {
+        kafkaTemplate.setObservationEnabled(true);
         IntStream.range(0, 10)
                 .forEach(i -> kafkaTemplate.send(topic, UUID.randomUUID(), "Simple test message"));
     }

@@ -6,8 +6,10 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.example.KafkaBatchListenerExample.service.NotificationsHistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.UUID;
 
 @Service
