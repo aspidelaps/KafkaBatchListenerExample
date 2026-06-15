@@ -16,7 +16,7 @@ spring:
 application:
   kafka-topics: kafka-test-batch-topic
 
-logging.pattern.level: "%5p [${spring.application.name:},%X{traceId},%X{spanId}]"
+#logging.level.org.apache.kafka: DEBUG
 
 management:
   endpoints.web.exposure.include: "*"

@@ -1,7 +1,5 @@
 spring:
   kafka:
-    producer:
-      batch-size: 10
     template:
       observation-enabled: true
     listener:
