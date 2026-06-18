@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: KafkaBatchListenerExample
   kafka:
     bootstrap-servers: localhost:9092
     listener:
@@ -16,11 +18,23 @@ spring:
 application:
   kafka-topics: kafka-test-batch-topic
 
-#logging.level.org.apache.kafka: DEBUG
-
 management:
   endpoints.web.exposure.include: "*"
   server.port: 8081
   observations:
     enable:
       all: true
+# TODO: Check if this even needed when tracing start working
+  tracing:
+    sampling:
+      probability: 1.0
+    propagation:
+      type: w3c
+      produce: w3c
+      consume: w3c
+
+logging:
+#  level.org.apache.kafka: DEBUG
+  pattern:
+#    console: "[%d{dd.MM.yyyy|HH:mm:ss.SSS}] %highlight(%-5level) [%blue(%t)] %yellow(%C{1}):[%X{traceId} %X{spanId}]: %msg%n%throwable"
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [${spring.application.name},%X{traceId},%X{spanId}] %-5p %c{1} - %m%n"

@@ -1,4 +1,5 @@
 import containers.KafkaTestContainer;
+import lombok.extern.slf4j.Slf4j;
 import org.example.KafkaBatchListenerExample.KafkaBatchListenerExample;
 import org.example.KafkaBatchListenerExample.service.NotificationsHistory;
 import org.junit.jupiter.api.Assertions;

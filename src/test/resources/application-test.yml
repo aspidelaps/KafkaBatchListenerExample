@@ -1,9 +1,2 @@
-spring:
-  kafka:
-    template:
-      observation-enabled: true
-    listener:
-      observation-enabled: true
-
 #  kafka-console-producer --broker-list localhost:9092 --topic kafka-test-batch-topic --property parse.key=true --property key.separator=:
 #  72503e9c-3b6d-40d1-a6e9-e738d1885140:Test_message_2
