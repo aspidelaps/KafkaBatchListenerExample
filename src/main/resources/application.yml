@@ -26,6 +26,7 @@ management:
       all: true
 # TODO: Check if this even needed when tracing start working
   tracing:
+    enabled: true
     sampling:
       probability: 1.0
     propagation:
@@ -37,4 +38,4 @@ logging:
 #  level.org.apache.kafka: DEBUG
   pattern:
 #    console: "[%d{dd.MM.yyyy|HH:mm:ss.SSS}] %highlight(%-5level) [%blue(%t)] %yellow(%C{1}):[%X{traceId} %X{spanId}]: %msg%n%throwable"
-    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [${spring.application.name},%X{traceId},%X{spanId}] %-5p %c{1} - %m%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %yellow([${spring.application.name},%X{traceId},%X{spanId}]) %-5p %c{1} - %m%n"
